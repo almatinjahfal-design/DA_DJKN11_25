@@ -1,0 +1,15 @@
+# Streamlit & utilities
+streamlit
+streamlit-folium
+
+# Data manipulation
+pandas
+numpy
+openpyxl
+joblib
+matplotlib
+
+# Machine Learning
+scikit-learn
+xgboost
+lightgbm
