@@ -4,9 +4,7 @@ import numpy as np
 import joblib
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression, ElasticNet, PassiveAggressiveRegressor
-from sklearn.svm import SVR
-from sklearn.neighbors import KNeighborsRegressor
+from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from lightgbm import LGBMRegressor
 import xgboost as xgb
@@ -17,9 +15,8 @@ import os
 from sklearn.metrics.pairwise import cosine_similarity
 
 # ==========================
-# Fungsi caching
+# Fungsi caching untuk file
 # ==========================
-
 @st.cache_resource
 def load_model(path):
     if os.path.exists(path):
@@ -30,12 +27,13 @@ def load_model(path):
 def load_data_from_github(url):
     return pd.read_excel(url)
 
-@st.cache_resource
+# ==========================
+# Fungsi train & evaluate
+# ==========================
 def train_model(model, X_train, y_train):
     model.fit(X_train, y_train)
     return model
 
-@st.cache_data
 def evaluate_model(model, X_train, X_test, y_train, y_test):
     y_train_pred = model.predict(X_train)
     y_test_pred = model.predict(X_test)
